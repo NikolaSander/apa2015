@@ -1,0 +1,334 @@
+﻿<!doctype html>
+<!-- to print to pdf, open in Chrome and add ?print-pdf to url -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Adding Design to the Research Process: Visualising Complex Migration Flow Data</title>
+		<meta name="description" content="Slides for APA 2015">
+		<meta name="author" content="Nikola Sander">
+		
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="css/reveal.min.css">
+		
+		<!-- Selected Style: Nikola -->
+		<link rel="stylesheet" href="css/theme/nikola.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes '?print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );}
+		</script>
+		<!--[if lt IE 9]><script src="lib/js/html5shiv.js"></script><![endif]-->
+
+		<!-- d3 -->
+		<link href="d3/dist/app-v1.css" rel="stylesheet" media="all">
+		<script src="d3/dist/app-v1.js"></script>
+
+		<!--orange colour: #ff9a15 -->
+		<!---white colour: #F4EBCE -->
+			
+	</head>
+	<body>
+	<div class="reveal">
+		<div class="slides">
+		<!-- SLIDES -->		
+		
+			<section data-background="images/top50-2005.png" data-background-size="contain">
+				<div style="background-color: rgba(0, 0, 0, 0.6); width:85%; margin:0 auto; text-align: center">
+				<h4 style="text-align: center; font-size: 140%; font-weight: bold">Adding Design to the Research Process: Visualising Complex Migration Flow Data</h4>
+				<h5 style="text-align: center;font-size: 120%">Nikola Sander</h5>
+				<h5 style="text-align: center;font-size: 120%">APA, Kuala Lumpur, 29 July 2015</h5>		
+				</div>
+				<br><br>
+				<p style="background-color: rgba(0, 0, 0, 0.6);width: 50%;margin:0 auto;text-align: center;font-size: 100%">Slides are available at: <a href="http://www.nikolasander.com/icpg2015-plenary" target="_blank">nikolasander.com/apa2015</a></p>
+			</section>
+
+		
+			<section data-background="images/jargon.jpg" data-background-size="contain">
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<h2 style="width:90%; margin:0 auto; text-align: center;font-size: 155%; font-weight:bold; background-color: rgba(0, 0, 0, 0.9)">Communicating science effectively</h2> 
+			</section>
+
+			<section data-background="images/bad_table.jpg" data-background-size="contain">
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			</section>
+
+			<section>
+			<h2>How many 5s?</h2>
+			<table border="0" style="background-color:#161617;border-collapse:collapse;border:0px solid #F4EBCE;color:#F4EBCE;width:100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td>8</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>4</td><td>2</td><td>l</td><td>7</td><td>8</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>1</td>
+			</tr>
+			<tr>
+				<td>6</td><td>1</td><td>7</td><td>5</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td><td>4</td><td>2</td><td>l</td>
+			</tr>
+			<tr>
+				<td>6</td><td>1</td><td>4</td><td>2</td><td>6</td><td>9</td><td>6</td><td>2</td><td>l</td><td>7</td><td>5</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>5</td><td>2</td><td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>9</td><td>6</td><td>7</td><td>2</td><td>l</td><td>9</td><td>6</td>
+			</tr>
+			<tr>
+				<td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td>5</td><td>2</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>4</td><td>2</td><td>l</td><td>7</td><td>5</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>6</td><td>1</td><td>9</td>
+			</tr>
+			<tr>
+				<td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td>5</td><td>2</td><td>6</td><td>6</td><td>9</td><td>9</td>
+			</tr>
+			<tr>
+				<td>l</td><td>7</td><td>5</td><td>2</td><td>6</td><td>1</td><td>4</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>8</td><td>2</td><td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td>6</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>2</td><td>l</td><td>7</td><td>6</td><td>1</td><td>4</td><td>5</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>1</td><td>4</td><td>6</td><td>2</td><td>l</td><td>7</td><td>1</td><td>6</td><td>9</td><td>6</td><td>2</td><td>6</td><td>9</td><td>9</td>
+			</tr>
+			<tr>
+				<td>9</td><td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td>2</td><td>2</td><td>6</td><td>9</td><td>6</td>
+			</tr>
+		</table>
+			</section>	
+
+
+			<section>		
+			<h2>How many 5s?</h2>
+			
+			<table border="0" style="background-color:#161617;border-collapse:collapse;border:0px solid #F4EBCE;color:#F4EBCE;width:100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td>8</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>4</td><td>2</td><td>l</td><td>7</td><td>8</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>1</td>
+			</tr>
+			<tr>
+				<td>6</td><td>1</td><td>7</td><td><font color="#ff9a15">5</font></td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td><td>4</td><td>2</td><td>l</td>
+			</tr>
+			<tr>
+				<td>6</td><td>1</td><td>4</td><td>2</td><td>6</td><td>9</td><td>6</td><td>2</td><td>l</td><td>7</td><td><font color="#ff9a15">5</font></td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td><font color="#ff9a15">5</font></td><td>2</td><td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>9</td><td>6</td><td>7</td><td>2</td><td>l</td><td>9</td><td>6</td>
+			</tr>
+			<tr>
+				<td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td><font color="#ff9a15">5</font></td><td>2</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>4</td><td>2</td><td>l</td><td>7</td><td><font color="#ff9a15">5</font></td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>6</td><td>1</td><td>9</td>
+			</tr>
+			<tr>
+				<td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td><font color="#ff9a15">5</font></td><td>2</td><td>6</td><td>6</td><td>9</td><td>9</td>
+			</tr>
+			<tr>
+				<td>l</td><td>7</td><td><font color="#ff9a15">5</font></td><td>2</td><td>6</td><td>1</td><td>4</td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>8</td><td>2</td><td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td>6</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>2</td><td>l</td><td>7</td><td>6</td><td>1</td><td>4</td><td><font color="#ff9a15">5</font></td><td>2</td><td>6</td><td>9</td><td>6</td><td>9</td><td>6</td><td>9</td>
+			</tr>
+			<tr>
+				<td>1</td><td>4</td><td>6</td><td>2</td><td>l</td><td>7</td><td>1</td><td>6</td><td>9</td><td>6</td><td>2</td><td>6</td><td>9</td><td>9</td>
+			</tr>
+			<tr>
+				<td>9</td><td>6</td><td>9</td><td>6</td><td>1</td><td>4</td><td>2</td><td>l</td><td>7</td><td>2</td><td>2</td><td>6</td><td>9</td><td>6</td>
+			</tr>
+		</table>
+		</section>	
+
+		<section data-background="images/Anscombes_quartet.png" data-background-size="contain">	
+				<h4 style="text-align:center; color:#333">Anscombe's quartet</h4>
+		</section>
+
+		<section data-background="images/foxnews_pie.jpg" data-background-size="contain">
+			<h3 style="width:80%; margin:0 auto; text-align: center; font-weight:bold; background-color: rgba(0, 0, 0, 0.5)">A 3D Excel pie chart is NOT effective data visualisation!</h3> 
+		</section>	
+			
+		<section data-background="images/text-tabelle.jpg" data-background-size="contain">		
+				<h3 style="font-size: 200%">Effective data visualisation is a matter of substance, of statistics, and design.</h3>
+				<p style="text-align:right; font-size: 100%"> Edward Tufte, 2001</p>
+		</section>	
+
+	
+		<section data-background="images/stefaner.png" data-background-size="contain">				
+				<p style="font-size: 120%;text-align:right; color:#333">Remixing Rosling, by Moritz Stefaner </p>
+				<p style="font-size: 90%;text-align:right; color:#333">Can you spot the reindeer?</p>
+				<br><br><br><br><br><br><br><br><br><br><br>
+		</section>	
+
+			<section data-background="images/circular-world.png" data-background-size="contain">	
+				<h2 style="text-align:center; color:#F4EBCE;background-color:rgba(0, 0, 0, 0.75)"><a href="http://www.global-migration.info" target="_blank">"The Global Flow of People"</a></h2>
+				<p style="text-align:center; color:#F4EBCE;background-color:rgba(0, 0, 0, 0.75)">Idea, design & implementation:<br> Nikola Sander and Ramon Bauer</p>
+				<br>
+				<p style="text-align:center; color:#F4EBCE;background-color:rgba(0, 0, 0, 0.75)">d3.js coding: Null2 Berlin</p>
+				<p style="text-align:center; color:#F4EBCE;background-color:rgba(0, 0, 0, 0.75)">Data: Guy J Abel</p>
+				<p style="text-align:center; color:#F4EBCE;background-color:rgba(0, 0, 0, 0.75)">Web design: Elvira Stein</p>
+				<p style="text-align:center; color:#F4EBCE;background-color:rgba(0, 0, 0, 0.75)">Financial support: Vienna Institute of Demography</p>
+			</section>	
+			
+			<section data-background="images/Table_big1.png" data-background-size="contain">	
+				<h3 style="text-align:center; color:#F4EBCE;background-color:rgba(0, 0, 0, 0.5);font-size: 170%">Where it all began: <br>global international migration flows<br> 196*196*4</h3>
+			</section>	
+
+			<section data-background="images/nyt-refugees.png" data-background-size="contain">	
+				<br><br><br><br><br><br><br><br><br><br>
+				<h3 style="text-align:center; color:#000;background-color:rgba(255, 255,255, 0.5);font-size: 160%"><a href="http://www.nytimes.com/interactive/2015/06/21/world/map-flow-desperate-migration-refugee-crisishtml?_r=0" target="_blank">
+				The Flight of Refugees Around the Globe. </a>The New York Times, 20 June 2015</h3>
+			</section>	
+			
+			<section data-background="images/circos.png" data-background-size="contain">	
+				<h3 style="text-align:center; color:#000;background-color:rgba(255, 255,255, 0.7);font-size: 190%">A source of inspiration.</h3>
+			</section>	
+
+			<section data-background="images/region_default.png" data-background-size="contain">	
+			</section>	
+
+			<section data-background="images/science_fig4.png" data-background-size="contain">
+			<span class="fragment fade-in" style="margin-bottom:0%">
+				<div style="background-color: rgba(0, 0, 0, 0.8);padding:5px 5px 5px 5px">
+				<h3 style="color:#fff; text-align:center">Abel & Sander (2014)<a href="http://www.sciencemag.org/content/343/6178/1520" target="_blank">"Quantifying Global International Migration Flows"</a>. <i>Science</i>, vol. 343: 1520-1522.</h3> 
+				<img src="images/science.png"  width="180" style="margin-left: 40%">
+				</div>
+				</span>
+			</section>	
+
+			<section>
+				<h2>How to read the circular migration plot...</h2>
+			</section>
+
+			<section data-background="images/science_fig4_step1.png" data-background-size="contain">
+			<p style="width:62%; margin:0 auto; text-align: center">Each region is assigned a colour.</p>
+			<br>
+			<p style="width:62%; margin:0 auto; text-align: center">The length of a circular segment shows a region's volume of migration in millions.</p>
+			</section>
+
+			<section data-background="images/science_fig4_step2.png" data-background-size="contain">
+			<p style="width:62%; margin:0 auto; text-align: center">A flow's direction is shown by its colour and proximity to the circle.</p> 
+			<br>
+			<p style="width:62%; margin:0 auto; text-align: center">Flows have the same colour as their origin. A wider gap indicates the flow’s destination.</p>
+			</section>
+
+			<section data-background="images/science_fig4_step3.png" data-background-size="contain">
+			<p style="width:62%; margin:0 auto; text-align: center">Inflows and outflows are arranged based on size, from largest to smallest.</p> 
+			</section>
+
+			<section data-background="images/science_fig4.png" data-background-size="contain">
+			<h3 style="width:20%; margin:0 auto; text-align: center; font-weight:bold; background-color: rgba(0, 0, 0, 0.5)">2005-10</h3> 
+			</section>
+			
+			<section data-background="images/demogr-datasheet1.png" data-background-size="contain">	
+			</section>
+			
+			<section data-background="images/datasheets_both.png" data-background-size="contain">	
+			</section>		
+			
+			<section data-background="images/global-migration.png" data-background-size="contain">
+				<br><br>
+				<h3 style="width:70%; margin:0 auto; text-align: center"><a style="font-weight:bold; color:#000" href="http://www.global-migration.info" target="_blank">www.global-migration.info</a></h3> 			
+			</section>
+
+
+
+			<!-- Interactive 	-->
+			<section style="margin-top:-108px">				
+			  <nav>
+			    <div id="timeline"></div>
+			  </nav>
+			  <div id="diagram"></div>	
+			  	  <script>
+					(function() {
+					  var datafile = 'd3/migrations.json';
+					  var aLittleBit = Math.PI / 100000;
+					  d3.json(datafile, function(data) {
+						var now = 1990;
+						var chart = Globalmigration.chart(data, {
+						  element: '#diagram',
+						  now: now,
+						  animationDuration: 1200,
+						  margin: 125,
+						  arcPadding: 0.04,
+						  layout: {
+							threshold: 50000,
+							labelThreshold: 5000,
+							colors: 'cd3d08 ec8f00 6dae29 683f92 b60275 2058a5 00a592 009d3c 378974 ffca00'.split(' ').map(function(c) { return '#' + c; })
+						  }
+						});
+						Globalmigration.timeline(chart, {
+						  now: now,
+						  element: '#timeline'
+						});
+						chart.draw(now);
+					  });
+					})();
+				  </script>	
+			</section>			
+
+			<section data-background="images/text-tabelle.jpg" data-background-size="contain">	
+				<h2>Data visualisation for science communication</h2>
+				<blockquote>
+				“Scientists must learn to communicate with the public, be willing to do so and indeed consider it their duty to do so.”
+				</blockquote>
+				<p style="text-align:right; font-size: 95%">Royal Society, 1985</p>
+			</section>	
+
+
+		<!-- END SLIDES -->		
+		</div>
+	</div>
+	
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.min.js"></script>
+
+	<script>
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				margin: 0.1,
+				controls: true,
+				progress: false,
+				history: false,
+				center: true,
+				slideNumber: true,
+				keyboard: true,
+				overview: true,
+				touch: true,
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+	</script>
+	</div>
+
+</body>
+</html>
